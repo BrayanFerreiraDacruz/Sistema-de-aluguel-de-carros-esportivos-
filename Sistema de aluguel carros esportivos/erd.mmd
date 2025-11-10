@@ -1,0 +1,37 @@
+erDiagram
+    USUARIOS ||--o{ ALUGUEIS : aluga
+    CARROS ||--o{ ALUGUEIS : possui
+
+    USUARIOS {
+        int id_usuario PK
+        varchar nome
+        varchar email UK
+        varchar senha
+        varchar telefone
+        enum tipo_usuario "cliente/admin"
+        timestamp data_cadastro
+    }
+
+    CARROS {
+        int id_carro PK
+        varchar marca
+        varchar modelo
+        year ano
+        varchar cor
+        varchar placa UK
+        decimal preco_diario
+        enum status "disponivel/alugado/manutencao"
+        varchar imagem_url
+    }
+
+    ALUGUEIS {
+        int id_aluguel PK
+        int id_usuario FK
+        int id_carro FK
+        date data_inicio
+        date data_fim_previsto
+        date data_devolucao
+        decimal valor_total
+        enum status "pendente/ativo/concluido/cancelado"
+        timestamp data_registro
+    }
